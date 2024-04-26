@@ -1,5 +1,7 @@
 package org.acme;
 
+import org.acme.model.Quote;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -11,7 +13,14 @@ public class GreetingResource {
 
     @Inject
     GreetingService service;
-
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/greeting/quote")
+    public Quote quoteService() {
+        return service.quoteService();
+    }
+  
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/greeting/{name}")
